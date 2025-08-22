@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="todo">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,21 +7,193 @@
     <link rel="stylesheet" href="./output.css" />
   </head>
   <body class="flex flex-col pt-20">
-    <header class="w-full h-20 bg-[#fefeff] border border-black-2 fixed top-0 left-0 z-50""></header>
-    <section
-      class="principal w-full h-200 flex flex-col items-center justify-center bg-black text-white">
-      <div
-        class="w-25 h-25 bg-[url('../img/pokebola.png')] bg-cover bg-center bg-no-repeat"></div>
-      <div><h1 class="text-2xl">Principal</h1></div>
-    </section>
-    <section
-      class="quienSoy w-full h-200 flex flex-col items-center justify-center bg-gray-900 text-white"></section>
-    <section
-      class="skills w-full h-200 flex flex-col items-center justify-center bg-gray-700 text-white"></section>
-    <section
-      class="portafolio w-full h-200 flex flex-col items-center justify-center bg-gray-500 text-white"></section>
-    <section
-      class="contacto w-full h-200 flex flex-col items-center justify-center bg-gray-300 text-white"></section>
-    <footer class="w-full h-15 bg-red-400"></footer>
+    <header
+      class="w-full h-20 bg-[#fdba62] border border-black-2 fixed top-0 left-0 z-50 flex items-center justify-between px-4 dark:bg-[#2d384b]">
+      <!-- Navegación horizontal centrada -->
+      <nav
+        class="navegador hidden md:flex absolute left-1/2 transform -translate-x-1/2">
+        <ul class="flex space-x-8">
+          <li
+            class="text-[#2d384b] dark:text-white px-4 py-2 rounded-lg hover:bg-[#2d384b] hover:text-[#fdba62] dark:hover:bg-[#fdba62] dark:hover:text-[#2d384b] transition-colors duration-200 cursor-pointer">
+            Home
+          </li>
+          <li
+            class="text-[#2d384b] dark:text-white px-4 py-2 rounded-lg hover:bg-[#2d384b] hover:text-[#fdba62] dark:hover:bg-[#fdba62] dark:hover:text-[#2d384b] transition-colors duration-200 cursor-pointer">
+            Quien soy
+          </li>
+          <li
+            class="text-[#2d384b] dark:text-white px-4 py-2 rounded-lg hover:bg-[#2d384b] hover:text-[#fdba62] dark:hover:bg-[#fdba62] dark:hover:text-[#2d384b] transition-colors duration-200 cursor-pointer">
+            Habilidades
+          </li>
+          <li
+            class="text-[#2d384b] dark:text-white px-4 py-2 rounded-lg hover:bg-[#2d384b] hover:text-[#fdba62] dark:hover:bg-[#fdba62] dark:hover:text-[#2d384b] transition-colors duration-200 cursor-pointer">
+            Portafolio
+          </li>
+          <li
+            class="text-[#2d384b] dark:text-white px-4 py-2 rounded-lg hover:bg-[#2d384b] hover:text-[#fdba62] dark:hover:bg-[#fdba62] dark:hover:text-[#2d384b] transition-colors duration-200 cursor-pointer">
+            Contacto
+          </li>
+        </ul>
+      </nav>
+
+      <button
+        id="menu-button"
+        class="p-2 rounded-lg hover:bg-[#2d384b] hover:text-[#fdba62] dark:hover:bg-[#fdba62] dark:hover:text-[#2d384b] transition-colors duration-200 md:hidden">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          class="size-6 stroke-current text-[#374351] dark:text-white">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
+
+      <div class="flex items-center">
+        <button
+          id="dark-button"
+          class="p-2 rounded-lg hover:bg-[#2d384b] hover:text-[#fdba62] dark:hover:bg-[#fdba62] dark:hover:text-[#2d384b] transition-colors duration-200">
+          <svg
+            class="size-6 stroke-current"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+          </svg>
+        </button>
+
+        <button
+          id="light-button"
+          class="p-2 rounded-lg hover:bg-[#2d384b] hover:text-[#fdba62] dark:text-white dark:hover:bg-[#fdba62] dark:hover:text-[#2d384b] transition-colors duration-200 hidden">
+          <svg
+            class="size-6 stroke-current"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+          </svg>
+        </button>
+      </div>
+    </header>
+    <main>
+      <section
+        class="Hero w-full min-h-screen flex items-center justify-center p-6 bg-gradient-to-br from-[#e6f0ff] to-[#a0c4ff] dark:bg-gradient-to-br dark:from-[#0f2e4d] dark:to-[#18568a]">
+        <div
+          class="contenedor1 flex flex-col items-center justify-center gap-8 md:flex-row md:gap-16">
+          <div
+            class="imagen w-48 h-48 md:w-64 md:h-64 bg-[url('./img/pokebola.png')] bg-contain bg-center bg-no-repeat transition-all duration-500 transform hover:scale-110 hover:rotate-12 cursor-pointer active:scale-95"></div>
+          <div
+            class="Presentacion text-center md:text-left space-y-4 md:space-y-6">
+            <h2
+              class="text-xl md:text-2xl text-gray-700 dark:text-gray-300 font-medium transition-all duration-300 hover:text-[#fdba62] hover:scale-105">
+              ¡HOLA!, yo soy
+            </h2>
+            <h1
+              class="text-4xl md:text-6xl font-bold text-[#18568a] dark:text-[#fdba62] transition-all duration-500 transform hover:text-[#0f2e4d] dark:hover:text-[#ffd58a] hover:scale-105 cursor-default">
+              Nefi Pineda
+            </h1>
+            <h2
+              class="text-xl md:text-2xl text-gray-700 dark:text-gray-300 font-medium transition-all duration-300 hover:text-[#fdba62] hover:scale-105">
+              Soy desarrollador front-end
+            </h2>
+          </div>
+        </div>
+      </section>
+      <section
+        class="quienSoy w-full min-h-screen flex items-center justify-center bg-gradient-to-br from-[#e6f0ff] to-[#a0c4ff] dark:bg-gradient-to-br dark:from-[#0f2e4d] dark:to-[#18568a] py-16 px-6">
+        <div class="contenedor2 max-w-6xl mx-auto w-full">
+          <h2
+            class="text-4xl md:text-5xl font-bold text-center mb-16 text-[#18568a] dark:text-[#fdba62] transition-all duration-700 transform hover:scale-110 hover:text-[#0f2e4d] dark:hover:text-[#ffd58a] cursor-default">
+            ¿Quién soy yo?
+          </h2>
+          <div
+            class="tarjeta flex flex-col-reverse md:flex-row items-center justify-between gap-10 md:gap-16">
+            <div
+              class="parrafo space-y-6 text-gray-700 dark:text-gray-300 text-lg md:text-xl leading-relaxed transition-all duration-500 md:w-7/12">
+              <p
+                class="p-4 md:p-6 rounded-xl bg-white/70 dark:bg-gray-800/60 backdrop-blur-sm shadow-md transition-transform duration-500 ease-in-out hover:scale-105 overflow-hidden transform origin-center">
+                Hola mi nombre es Nefi, tengo 30 años, soy desarrollador
+                front-end, estudiante de la carrera Ingenieria en Sistemas
+                computacionales en la UAM Azcapozalco.
+              </p>
+              <p
+                class="p-4 md:p-6 rounded-xl bg-white/70 dark:bg-gray-800/60 backdrop-blur-sm shadow-md transition-transform duration-500 ease-in-out hover:scale-105 overflow-hidden transform origin-center">
+                Me gusta programar, jugar videojuegos, así tambien juegos de
+                mesa, también me gusta dibujar y si se arma la reta de fut, de
+                basket, de voli o tocho yo le entro.
+              </p>
+              <p
+                class="p-4 md:p-6 rounded-xl bg-white/70 dark:bg-gray-800/60 backdrop-blur-sm shadow-md transition-transform duration-500 ease-in-out hover:scale-105 overflow-hidden transform origin-center">
+                Mi meta en la vida es trabajar programando y resolviendo
+                problemas con alguna app, así también tener una familia y cuidar
+                de ellos así como pasarla bien con cada uno.
+              </p>
+            </div>
+            <div class="foto md:w-5/12 flex justify-center">
+              <div
+                class="img2 w-64 h-64 md:w-80 md:h-80 bg-[url('./img/Nefi.png')] bg-cover bg-center rounded-full border-4 border-white dark:border-gray-700 shadow-xl transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:border-[#fdba62] dark:hover:border-[#fdba62] cursor-pointer active:scale-95"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        class="skills w-full min-h-screen flex items-center justify-center bg-gradient-to-br from-[#e6f0ff] to-[#a0c4ff] dark:bg-gradient-to-br dark:from-[#0f2e4d] dark:to-[#18568a] py-16 px-6">
+        <div
+          class="contenedor3 max-w-6xl mx-auto w-full flex flex-col items-center gap-16">
+          <h2
+            class="text-4xl md:text-5xl font-bold text-center text-[#18568a] dark:text-[#fdba62] transition-all duration-700 transform hover:scale-110 hover:text-[#0f2e4d] dark:hover:text-[#ffd58a] cursor-default">
+            Habilidades
+          </h2>
+          text
+          <div
+            class="flex flex-col md:flex-row items-center justify-center gap-16 w-full">
+            <div
+              class="img3 w-80 h-80 md:w-96 md:h-96 bg-[url('./img/Medallas.png')] bg-contain bg-center bg-no-repeat transition-all duration-500 transform hover:scale-110 hover:rotate-6 cursor-pointer active:scale-95"></div>
+
+            <div class="card-resume flex justify-center">
+              <div
+                class="resume p-8 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl transition-all duration-500 transform hover:scale-105 hover:shadow-2xl">
+                <button
+                  class="px-12 py-6 bg-[#18568a] dark:bg-[#fdba62] text-white dark:text-gray-900 text-2xl font-bold rounded-full transition-all duration-300 transform hover:scale-110 hover:bg-[#0f2e4d] dark:hover:bg-[#ffd58a] active:scale-95 shadow-md hover:shadow-lg">
+                  Descargar CV
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="portafolio"></section>
+      <section class="contacto"></section>
+    </main>
+    <footer></footer>
+    <script>
+      let todo = document.querySelector("#todo");
+      let darkButton = document.querySelector("#dark-button");
+      let lightButton = document.querySelector("#light-button");
+
+      darkButton.addEventListener("click", function () {
+        todo.classList.add("dark");
+        darkButton.classList.add("hidden");
+        lightButton.classList.remove("hidden");
+      });
+
+      lightButton.addEventListener("click", function () {
+        todo.classList.remove("dark");
+        lightButton.classList.add("hidden");
+        darkButton.classList.remove("hidden");
+      });
+    </script>
   </body>
 </html>
